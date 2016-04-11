@@ -31,10 +31,16 @@ class ManagerTest extends \PHPUnit_Framework_TestCase implements FinishObserver
         $manager = new Manager();
         $a = $manager->namedStart('A');
         $b = $manager->namedStart('B');
+        $this->assertNull($a->getParent());
+        $this->assertSame($a, $b->getParent());
         $this->assertSame($b, $manager->stop());
-        $this->assertSame($a , $manager->stop());
+        $c = $manager->namedStart('C');
+        $this->assertSame($a, $c->getParent());
+        $this->assertSame($c, $manager->stop());
+        $this->assertSame($a, $manager->stop());
         $this->assertSame($b, $manager->getIterator()->offsetGet(0));
-        $this->assertSame($a, $manager->getIterator()->offsetGet(1));
+        $this->assertSame($c, $manager->getIterator()->offsetGet(1));
+        $this->assertSame($a, $manager->getIterator()->offsetGet(2));
     }
 
     public function testSimple()

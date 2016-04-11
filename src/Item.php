@@ -36,6 +36,11 @@ class Item implements IProfilingActions
      * @var bool
      */
     protected $handled = false;
+    /**
+     * Point to parent item in nested context
+     * @var Item|null
+     */
+    protected $parent;
 
     /**
      * @var string
@@ -156,10 +161,29 @@ class Item implements IProfilingActions
         return $this;
     }
 
+    /**
+     * @return null|Item
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param null|Item $parent
+     * @return Item
+     */
+    public function setParent(Item $parent = null)
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
     public function setInitState()
     {
         $this->statistics = [];
         $this->handled = false;
+        $this->parent = null;
         return $this->setState(StateInit::getInstance());
     }
 

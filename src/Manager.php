@@ -12,7 +12,6 @@ namespace PHProfiling;
 
 use PHProfiling\State\StateInit;
 use PHProfiling\State\StateStopped;
-use Traversable;
 
 class Manager implements IProfilingActions, \IteratorAggregate
 {
@@ -104,6 +103,7 @@ class Manager implements IProfilingActions, \IteratorAggregate
     {
         $instance = clone $this->prototype; // Shallow copy deliberately
         $instance->setTitle($title);
+        if($top = $this->top()) $instance->setParent($top);
         $this->items->push($instance);
         return $instance;
     }
