@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="vendor/autoload.php" colors="true">
+<phpunit
+        testsuite="PHProfiling"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+>
     <testsuites>
-        <testsuite name="PHProfiling Test Suite">
+        <testsuite name="PHProfiling">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
-        <whitelist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
-            <directory suffix=".php">vendor/</directory>
+            <exclude>
+                <directory suffix=".php">test/</directory>
+                <directory suffix=".php">vendor/</directory>
+            </exclude>
         </whitelist>
     </filter>
 
