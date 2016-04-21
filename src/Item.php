@@ -75,6 +75,17 @@ class Item implements IProfilingActions
     }
 
     /**
+     * Determine whether statistic data exists for specified scope(class) and even specific key
+     * @param string $scope
+     * @param string|null $key
+     * @return bool
+     */
+    public function hasStatistics($scope, $key = null)
+    {
+        return isset($key) ? isset($this->statistics[$scope][$key]) : isset($this->statistics[$scope]);
+    }
+
+    /**
      * @return array
      */
     public function getStatistics()

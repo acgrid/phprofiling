@@ -29,6 +29,8 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
      */
     public function onFinish(Item $item)
     {
+        $this->assertTrue($item->hasStatistics(self::class));
+        $this->assertTrue($item->hasStatistics(self::class, 'onStart'));
         $this->assertTrue($item->getStatistic(self::class, 'onStart'));
         $this->assertTrue($item->getStatistic(self::class, 'onStop'));
         $this->assertTrue($item->getStatistic(self::class, 'onResume'));
@@ -82,6 +84,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
         $this->assertFalse($item->isHandled());
         $this->assertInstanceOf(StateInit::class, $item->getState());
         $this->assertEmpty($item->getStatistics());
+        $this->assertFalse($item->hasStatistics(self::class));
         $this->assertSame($item, $item->setStatistic(self::class, 'test1', 'a'));
         $this->assertSame('a', $item->getStatistic(self::class, 'test1'));
         $this->assertSame($item, $item->deleteStatistic(self::class, 'test1'));
