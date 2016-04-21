@@ -13,6 +13,7 @@ namespace PHProfilingTest;
 use PHProfiling\Item;
 use PHProfiling\Manager;
 use PHProfiling\Observer\FinishObserver;
+use PHProfiling\State\StatePaused;
 use PHProfiling\State\StateRunning;
 
 class ManagerTest extends \PHPUnit_Framework_TestCase implements FinishObserver
@@ -41,6 +42,8 @@ class ManagerTest extends \PHPUnit_Framework_TestCase implements FinishObserver
         $this->assertSame($b, $manager->getIterator()->offsetGet(0));
         $this->assertSame($c, $manager->getIterator()->offsetGet(1));
         $this->assertSame($a, $manager->getIterator()->offsetGet(2));
+        $d = $manager->namedStart('D');
+        $this->assertSame($d, $manager->discard());
     }
 
     public function testSimple()
@@ -61,7 +64,11 @@ class ManagerTest extends \PHPUnit_Framework_TestCase implements FinishObserver
         $this->assertNotSame($item, $newItem);
         $this->assertSame($newItem, $manager->start());
         $this->assertInstanceOf(StateRunning::class, $newItem->getState());
+        $this->assertInstanceOf(StatePaused::class, $manager->pause()->getState());
+        $this->assertSame($newItem, $manager->top());
+        $this->assertInstanceOf(StateRunning::class, $manager->resume()->getState());
         $newItem->stop();
+        $this->assertNull($manager->discard());
         echo "\n";
         $this->assertNotSame($newItem, $newItem2 = $manager->namedStart('2'));
         $this->assertCount(1, $manager);
