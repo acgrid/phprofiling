@@ -126,6 +126,12 @@ class Item implements IProfilingActions
         return $this;
     }
 
+    /**
+     * Return a reference for batch editing.
+     * Do not replace the whole variable into non-array value!
+     * @param string $scope
+     * @return array
+     */
     public function &refScopeStatistic($scope)
     {
         if(!isset($this->statistics[$scope])) $this->statistics[$scope] = [];
