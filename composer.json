@@ -2,7 +2,7 @@
   "name": "acgrid/PHProfiling",
   "type": "library",
   "keyword": ["profiling", "timing", "debug"],
-  "description": "",
+  "description": "Help collect profiling information in applications or libraries.",
   "author": [
     {"name": "acgrid", "email": "acgrid@gmail.com", "homepage": "http://github.com/acgrid"}
   ],
@@ -15,7 +15,8 @@
     "mockery/mockery": "*"
   },
   "suggest": {
-    "ext/pcntl": "Periodically collect OS-level profiling data by forking process."
+    "ext/pcntl": "Periodically collect independent profiling data by forking another monitoring process.",
+    "ext/sysvshm": "Periodically collect independent profiling data by forking another monitoring process."
   },
   "autoload": {
     "psr-4": {
