@@ -32,10 +32,13 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
         $this->assertTrue($item->hasStatistics(self::class));
         $this->assertTrue($item->hasStatistics(self::class, 'onStart'));
         $this->assertTrue($item->getStatistic(self::class, 'onStart'));
-        $this->assertTrue($item->getStatistic(self::class, 'onStop'));
         $this->assertTrue($item->getStatistic(self::class, 'onResume'));
         $this->assertTrue($item->getStatistic(self::class, 'onPause'));
-        $this->assertTrue($item->getStatistic(self::class, 'onStop'));
+        $ref =& $item->refScopeStatistic(self::class);
+        $this->assertCount(4, $ref);
+        $this->assertTrue($ref['onStop']);
+        $ref['Ref'] = true;
+        $this->assertTrue($item->getStatistic(self::class, 'Ref'));
         echo 'onFinish';
     }
 

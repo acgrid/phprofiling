@@ -126,6 +126,12 @@ class Item implements IProfilingActions
         return $this;
     }
 
+    public function &refScopeStatistic($scope)
+    {
+        if(!isset($this->statistics[$scope])) $this->statistics[$scope] = [];
+        return $this->statistics[$scope];
+    }
+
     /**
      * @param string $title
      * @return Item
