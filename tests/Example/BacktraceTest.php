@@ -66,7 +66,7 @@ class BacktraceTest extends \PHPUnit_Framework_TestCase implements FinishObserve
             $trace = $item->stop()->refScopeStatistic(BacktraceObserver::class);
             $this->assertSame('PHProfilingTest\Example\BacktraceTest->testInClosure',
                 $trace[BacktraceObserver::FILED_START_POSITION][BacktraceObserver::SUB_FILED_EXPRESSION]);
-            $this->assertSame('PHProfilingTest\Example\BacktraceTest->PHProfilingTest\Example\{closure}',
+            $this->assertRegExp('/closure(\$|\})/i',
                 $trace[BacktraceObserver::FILED_STOP_POSITION][BacktraceObserver::SUB_FILED_EXPRESSION]);
         };
         $finish($this->manager->namedStart('3'));
