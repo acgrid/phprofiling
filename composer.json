@@ -11,12 +11,12 @@
     "monolog/monolog": "~1.7"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.1",
-    "mockery/mockery": "*"
+    "phpunit/phpunit": "~5"
   },
+  "license": "MIT",
   "suggest": {
     "ext/pcntl": "Periodically collect independent profiling data by forking another monitoring process.",
-    "ext/sysvshm": "Periodically collect independent profiling data by forking another monitoring process."
+    "ext/sysvshm": "Exchange profiling data through shared memory IPC."
   },
   "autoload": {
     "psr-4": {
