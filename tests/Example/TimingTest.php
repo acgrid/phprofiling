@@ -46,5 +46,6 @@ class TimingTest extends \PHPUnit_Framework_TestCase
         $item = $this->manager->stop();
         $this->assertEquals(0.3, $item->getStatistic(TimingObserver::class, TimingObserver::FILED_RUNTIME),
             'Time is out of tolerance, check delta first.', 0.1);
+	    $this->assertEquals(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'], TimingObserver::getGlobalT(), 'Global time is out of tolerance, check delta first.', 0.1);
     }
 }

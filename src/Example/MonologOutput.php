@@ -32,7 +32,6 @@ class MonologOutput implements FinishObserver
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onFinish(Item $item)
     {

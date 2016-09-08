@@ -20,7 +20,6 @@ class ManagerTest extends \PHPUnit_Framework_TestCase implements FinishObserver
 {
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onFinish(Item $item)
     {

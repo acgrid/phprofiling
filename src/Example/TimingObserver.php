@@ -31,6 +31,10 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
      * @var float The timestamp on execution start
      */
     protected $start;
+	/**
+	 * @var float The start timestamp of latest set
+	 */
+	protected static $globalStart;
 
     /**
      * TimingObserver constructor.
@@ -46,6 +50,7 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
             $this->start = static::getTS();
         }
         $this->start = floatval($this->start);
+	    static::$globalStart = $this->start;
     }
     
     protected function getStart(Item $item)
@@ -70,7 +75,6 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onPause(Item $item)
     {
@@ -79,7 +83,6 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onResume(Item $item)
     {
@@ -89,7 +92,6 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStart(Item $item)
     {
@@ -99,7 +101,6 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStop(Item $item)
     {
@@ -114,6 +115,12 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
     public function getT()
     {
         return static::getTS() - $this->start;
+    }
+
+    public static function getGlobalT()
+    {
+    	if(!isset(static::$globalStart)) static::$globalStart = isset($_SERVER['REQUEST_TIME_FLOAT']) ? $_SERVER['REQUEST_TIME_FLOAT'] : $_SERVER['REQUEST_TIME'];
+	    return static::getTS() - static::$globalStart;
     }
 
     /**

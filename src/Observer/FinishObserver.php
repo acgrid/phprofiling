@@ -15,10 +15,9 @@ use PHProfiling\Item;
 interface FinishObserver extends IObserver
 {
     /**
-     * Return true to let manager remove this item if the item is no longer needed.
+     * Invoke Item->setHandled(true) to let manager remove this item if the item is no longer needed.
      * 
      * @param Item $item
-     * @return bool
      */
     public function onFinish(Item $item);
 }

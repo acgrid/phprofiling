@@ -31,7 +31,6 @@ class MemoryPeekUseObserver implements StartObserver, StopObserver
     
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStart(Item $item)
     {
@@ -40,7 +39,6 @@ class MemoryPeekUseObserver implements StartObserver, StopObserver
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStop(Item $item)
     {

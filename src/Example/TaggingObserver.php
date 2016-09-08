@@ -48,7 +48,6 @@ class TaggingObserver implements StartObserver
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStart(Item $item)
     {

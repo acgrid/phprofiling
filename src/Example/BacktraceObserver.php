@@ -66,7 +66,6 @@ class BacktraceObserver implements StartObserver, StopObserver
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStart(Item $item)
     {
@@ -79,7 +78,6 @@ class BacktraceObserver implements StartObserver, StopObserver
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStop(Item $item)
     {

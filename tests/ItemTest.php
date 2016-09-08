@@ -25,7 +25,6 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
 {
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onFinish(Item $item)
     {
@@ -44,7 +43,6 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onPause(Item $item)
     {
@@ -53,7 +51,6 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onResume(Item $item)
     {
@@ -62,7 +59,6 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStart(Item $item)
     {
@@ -71,7 +67,6 @@ class ItemTest extends \PHPUnit_Framework_TestCase implements StartObserver, Pau
 
     /**
      * @param Item $item
-     * @return mixed
      */
     public function onStop(Item $item)
     {
