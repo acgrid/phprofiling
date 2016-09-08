@@ -36,13 +36,20 @@ class ManagerTest extends \PHPUnit_Framework_TestCase implements FinishObserver
         $this->assertSame($b, $manager->stop());
         $c = $manager->namedStart('C');
         $this->assertSame($a, $c->getParent());
+	    $d = $manager->namedStart('D');
+	    $this->assertSame($d, $manager->stop());
         $this->assertSame($c, $manager->stop());
         $this->assertSame($a, $manager->stop());
-        $this->assertSame($b, $manager->getIterator()->offsetGet(0));
-        $this->assertSame($c, $manager->getIterator()->offsetGet(1));
-        $this->assertSame($a, $manager->getIterator()->offsetGet(2));
-        $d = $manager->namedStart('D');
-        $this->assertSame($d, $manager->discard());
+	    $e = $manager->namedStart('E');
+	    $this->assertSame($e, $manager->stop());
+        $this->assertSame($a, $manager->getIterator()->offsetGet(0));
+        $this->assertSame($b, $a->getIterator()->offsetGet(0));
+        $this->assertSame($c, $a->getIterator()->offsetGet(1));
+        $this->assertSame($d, $c->getIterator()->offsetGet(0));
+        $this->assertSame($e, $manager->getIterator()->offsetGet(1));
+        $z = $manager->namedStart('Z');
+        $this->assertSame($z, $manager->discard());
+	    $this->assertSame(2, $manager->getIterator()->count());
     }
 
     public function testSimple()

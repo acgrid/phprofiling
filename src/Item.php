@@ -17,7 +17,7 @@ use PHProfiling\State\StatePaused;
 use PHProfiling\State\StateRunning;
 use PHProfiling\State\StateStopped;
 
-class Item implements IProfilingActions
+class Item implements IProfilingActions, \IteratorAggregate
 {
     /**
      * @var AbstractState
@@ -41,6 +41,11 @@ class Item implements IProfilingActions
      * @var Item|null
      */
     protected $parent;
+	/**
+	 * Collection of children items in nested context
+	 * @var array
+	 */
+	protected $children = [];
 
     /**
      * @var string
@@ -199,6 +204,7 @@ class Item implements IProfilingActions
     public function setParent(Item $parent = null)
     {
         $this->parent = $parent;
+	    if($this->parent) $this->parent->children[] = $this;
         return $this;
     }
 
@@ -207,6 +213,7 @@ class Item implements IProfilingActions
         $this->statistics = [];
         $this->handled = false;
         $this->parent = null;
+	    $this->children = [];
         return $this->setState(StateInit::getInstance());
     }
 
@@ -312,4 +319,10 @@ class Item implements IProfilingActions
         return $this->state->discard($this);
     }
 
+	/**
+	 * @return \ArrayIterator
+	 */
+	public function getIterator() {
+		return new \ArrayIterator($this->children);
+	}
 }

@@ -71,7 +71,7 @@ class Manager implements IProfilingActions, \IteratorAggregate
 
     protected function handle(Item $item)
     {
-        if(!$item->isHandled()) $this->handled->enqueue($item);
+        if(!$item->isHandled() && $item->getParent() === null) $this->handled->enqueue($item);
     }
 
     /**
