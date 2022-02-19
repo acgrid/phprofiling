@@ -64,7 +64,7 @@ class Manager implements IProfilingActions, \IteratorAggregate
     /**
      * @return \SplQueue
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->handled;
     }
