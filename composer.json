@@ -1,5 +1,5 @@
 {
-  "name": "bgli100/phprofiling",
+  "name": "acgrid/phprofiling",
   "type": "library",
   "keyword": ["profiling", "timing", "debug"],
   "description": "Help collect profiling information in applications or libraries.",
