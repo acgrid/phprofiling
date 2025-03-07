@@ -40,7 +40,7 @@ class TimingObserver implements StartObserver, PauseObserver, ResumeObserver, St
      * TimingObserver constructor.
      * @param float|null $startTimestamp
      */
-    public function __construct(float|null $startTimestamp)
+    public function __construct(float|null $startTimestamp = null)
     {
         if(is_numeric($startTimestamp)){
             $this->start = $startTimestamp;
