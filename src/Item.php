@@ -85,7 +85,7 @@ class Item implements IProfilingActions, \IteratorAggregate
      * @param string|null $key
      * @return bool
      */
-    public function hasStatistics($scope, $key = null)
+    public function hasStatistics($scope, string|null $key)
     {
         return isset($key) ? isset($this->statistics[$scope][$key]) : isset($this->statistics[$scope]);
     }
@@ -201,7 +201,7 @@ class Item implements IProfilingActions, \IteratorAggregate
      * @param null|Item $parent
      * @return Item
      */
-    public function setParent(Item $parent = null)
+    public function setParent(null|Item $parent)
     {
         $this->parent = $parent;
 	    if($this->parent) $this->parent->children[] = $this;
