@@ -32,7 +32,7 @@ class Manager implements IProfilingActions, \IteratorAggregate
      * Manager constructor.
      * @param Item|null $prototype
      */
-    public function __construct(Item $prototype = null)
+    public function __construct(Item|null $prototype = null)
     {
         $this->items = new \SplStack();
         $this->handled = new \SplQueue();
